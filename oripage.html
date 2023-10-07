@@ -1,0 +1,116 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: pink;
+            color: black;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: red;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ffcccc;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .message {
+            font-size: 20px;
+            margin-top: 50px;
+            visibility: hidden;
+        }
+
+        .heart {
+            color: red;
+            font-size: 12px;
+            position: absolute;
+        }
+
+        .quote {
+            font-style: italic;
+            margin: 10px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click if you're cute</h1>
+    <button onclick="showMessage()">Click me!</button>
+    <div class="message" id="message"></div>
+
+    <script>
+const quotes = [
+            "Happiness can be found even in the darkest of times, if one only remembers to turn on the light.",
+            "It does not do to dwell on dreams and forget to live.",
+            "Words are, in my not-so-humble opinion, our most inexhaustible source of magic.",
+            "To the well-organized mind, death is but the next great adventure.",
+            "We've all got both light and dark inside us. What matters is the part we choose to act on. That's who we really are.",
+            "You're a wizard, Harry.",
+            "I solemnly swear that I am up to no good.",
+            "After all this time? Always.",
+            "It is our choices, Harry, that show what we truly are, far more than our abilities.",
+            "Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real?"
+];
+
+function showMessage() {
+            const messageDiv = document.getElementById("message");
+            messageDiv.style.visibility = "visible";
+
+            const message = "I ♡ Ori Dardasi";
+            const delay = 200; // milliseconds
+
+            for (let i = 0; i < message.length; i++) {
+                setTimeout(() => {
+                    messageDiv.innerHTML += message[i];
+                }, i * delay);
+            }
+}
+
+function getRandomSize() {
+            const sizes = ["12px", "16px", "20px", "24px", "28px"];
+            return sizes[Math.floor(Math.random() * sizes.length)];
+}
+
+function getRandomCoordinates() {
+            const maxWidth = window.innerWidth - 100;
+            const maxHeight = window.innerHeight - 100;
+            const x = Math.floor(Math.random() * maxWidth);
+            const y = Math.floor(Math.random() * maxHeight);
+            return { x, y };
+}
+
+for (let i = 0; i < 50; i++) {
+            const heart = document.createElement("span");
+            heart.innerHTML = "&hearts;";
+            heart.classList.add("heart");
+            heart.style.fontSize = getRandomSize();
+            const { x, y } = getRandomCoordinates();
+            heart.style.left = x + "px";
+            heart.style.top = y + "px";
+            document.body.appendChild(heart);
+}
+
+const quoteElements = document.getElementsByClassName("quote");
+for (let i = 0; i < quoteElements.length; i++) {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElements[i].textContent = quotes[randomIndex];
+}
+    </script>
+
+    <div class="quote"></div>
+    <div class="quote"></div>
+    <div class="quote"></div>
+</body>
+</html>
